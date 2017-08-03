@@ -11,11 +11,11 @@ config.output = {
 };
 
 config.resolve = {
-  root: [
+  modules: [
     path.join(__dirname, "..", "node_modules"),
     path.join(__dirname, "..", "src"),
   ],
-  extensions: ['', '.js', '.jsx'] 
+  extensions: ['.js', '.jsx'] 
 };
 
 // As per https://github.com/airbnb/enzyme/issues/47#issuecomment-258510723
@@ -46,10 +46,15 @@ config.module.loaders.push(
   }
 );
 
-config.eslint = {
-  configFile: './.eslintrc'
-};
-
+config.plugins.push(
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      eslint: {
+        configFile: './.eslintrc'
+      }
+    }
+  })
+);
 
 config.plugins.push(
   new webpack.DefinePlugin({

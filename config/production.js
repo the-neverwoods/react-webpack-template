@@ -3,7 +3,6 @@
 var webpack = require('webpack');
 var config = require('./base.js');
 var webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 config.cache = false;
 
@@ -17,17 +16,16 @@ config.plugins.push(
 );
 
 config.plugins.push(
-  new CopyWebpackPlugin([
-    {
-      from: './src/index-prod.html',
-      to: './index.html'
-    }
-  ])
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': `'production'`
+  })
 );
 
 config.plugins.push(
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': `'production'`
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: Infinity,
+    filename: 'vendor.bundle.min.js'
   })
 );
 

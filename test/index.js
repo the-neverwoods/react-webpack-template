@@ -5,6 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 
 chai.use(chaiEnzyme());
 
+require(`./components`);
 require(`./helpers`);
 require(`./styles`);
 require(`./actions`);

@@ -1,10 +1,10 @@
 'use strict';
 
 import React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 
-// Get all page wrapper components
-import ComponentExample from './ComponentExample.jsx';
+// Get routes for app
+import routes from '../routes/routes.js';
 
 // Set up Redux
 import { createStore, compose } from 'redux';
@@ -12,15 +12,25 @@ import { Provider } from 'react-redux';
 import reducer from '../reducers';
 import persistState from 'redux-localstorage';
 
-const enhancer = compose(persistState());
+
+let enhancer = compose(persistState());
 const store = createStore(reducer, enhancer);
 
+// Set up Google Analytics
+import GoogleAnalytics from 'react-ga';
+// GoogleAnalytics.initialize(`UA-XXXXXXXX-X`);
+
+const log = () => {
+  GoogleAnalytics.set({ page: window.location.pathname });
+  GoogleAnalytics.pageview(window.location.pathname);
+};
+
 const Root = () => (
-  <Provider store={ store }>
-    <Router history={ browserHistory }>
-      <Route path="/" component={ ComponentExample } />
-    </Router>
-  </Provider>
+  <MuiThemeProvider>
+    <Provider store={ store }>
+      <Router history={ browserHistory } routes={ routes } onUpdate={ log } />
+    </Provider>
+  </MuiThemeProvider>
 );
 
 export default Root;

@@ -3,16 +3,6 @@
 var webpack = require('webpack');
 var config = require('./base.js');
 var path = require('path');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-
-config.plugins.push(
-  new CopyWebpackPlugin([
-    {
-      from: './src/index-dev.html',
-      to: './index.html'
-    }
-  ])
-);
 
 config.module.loaders.push(
   {
@@ -30,18 +20,28 @@ config.module.loaders.push(
   }
 );
 
-config.devServer = {
-  outputPath: path.join(__dirname, 'dist')
-};
-
-config.eslint = {
-  configFile: './.eslintrc',
-  fix: true
-};
+config.plugins.push(
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      eslint: {
+        configFile: './.eslintrc',
+        fix: true
+      }
+    }
+  })
+);
 
 config.plugins.push(
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': `'development'`
+  })
+);
+
+config.plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: Infinity,
+    filename: 'vendor.bundle.min.js'
   })
 );
 

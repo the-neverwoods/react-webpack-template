@@ -1,10 +1,8 @@
 'use strict';
 
-var ENV = process.env.NODE_ENV;
+require('dotenv').config();
 
-if (ENV) {
-  console.log('Building ' + ENV.toLowerCase() + ' bundle.');
-  module.exports = require('./config/' + ENV.toLowerCase() + '.js');
-} else {
-  module.exports = require('./config/development.js');
-}
+var ENV = process.env.NODE_ENV ? process.env.NODE_ENV : `development`;
+
+console.log('Building ' + ENV.toLowerCase() + ' bundle.');
+module.exports = require('./config/' + ENV.toLowerCase() + '.js');
