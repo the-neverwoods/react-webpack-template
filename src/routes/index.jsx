@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
 const IndexPage = () => {
@@ -14,7 +13,7 @@ if (process.env.NODE_ENV !== `production`) {
   };
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (/* state */) => ({
 
 });
 

@@ -26,11 +26,9 @@ const log = () => {
 };
 
 const Root = () => (
-  <MuiThemeProvider>
-    <Provider store={ store }>
-      <Router history={ browserHistory } routes={ routes } onUpdate={ log } />
-    </Provider>
-  </MuiThemeProvider>
+  <Provider store={ store }>
+    <Router history={ browserHistory } routes={ routes } onUpdate={ log } />
+  </Provider>
 );
 
 export default Root;

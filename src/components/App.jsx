@@ -16,24 +16,24 @@ class App extends React.Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(/* nextProps */) {
 
   }
 
   render() {
     return (
       <div>
-        field assist
+        hello world!
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (/* state */) => ({
 
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (/* dispatch */) => ({
 
 });
 

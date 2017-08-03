@@ -13,4 +13,4 @@ router.get(`/`, (req, res) => {
   res.send(``);
 });
 
-export default router;
+module.exports = router;

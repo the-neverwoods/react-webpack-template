@@ -38,6 +38,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
 });
 
-app.listen(NODE_PORT, () => 
+app.listen(NODE_PORT, () => {
   console.log(`http server listening on port ${ NODE_PORT }`)
 });
